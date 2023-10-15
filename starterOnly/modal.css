@@ -478,6 +478,16 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+/* ERROR */
+#errorFirstName {
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+  display: none;
+}
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
