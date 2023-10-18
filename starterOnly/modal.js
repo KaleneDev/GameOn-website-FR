@@ -10,14 +10,18 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtnClose = document.querySelector(".close");
+const moddalBtnClose2 = document.querySelector(".btn-submit.closeBtn");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalBtnSumit = document.querySelector(".btn-submit");
+
+console.log(moddalBtnClose2);
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 modalBtnClose.addEventListener("click", closeModal);
+moddalBtnClose2.addEventListener("click", closeModal);
 // launch modal form
 function launchModal() {
     modalbg.style.display = "block";
@@ -27,12 +31,12 @@ function closeModal() {
 }
 
 modalBtnSumit.addEventListener("click", function (e) {
-
     e.preventDefault();
+    let isFormValid = true;
 
     let firstName = document.getElementById("first").value;
     let lastName = document.getElementById("last").value;
-    // let email = document.getElementById("email").value;
+    let email = document.getElementById("email").value;
     // let birthdate = document.getElementById("birthdate").value;
     // let quantity = document.getElementById("quantity").value;
     // let location = document.querySelector('input[name="location"]:checked').value;
@@ -52,35 +56,30 @@ modalBtnSumit.addEventListener("click", function (e) {
     let regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (firstName.length < 2 || !regexName.test(firstName)) {
-        errorFirstName.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+        isFormValid = false;
+        errorFirstName.innerHTML =
+            "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
         errorFirstName.style.display = "block";
-        errorFirstName.style.color = "red";
-        errorFirstName.style.fontSize = "0.8rem";
-        errorFirstName.style.marginBottom = "0.5rem";
     } else {
         errorFirstName.style.display = "none";
     }
 
-    // if (lastName.length < 2 || !regexName.test(lastName)) {
-    //     errorLastName.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    //     errorLastName.style.display = "block";
-    //     errorLastName.style.color = "red";
-    //     errorLastName.style.fontSize = "0.8rem";
-    //     errorLastName.style.marginBottom = "0.5rem";
-    // } else {
-    //     errorLastName.style.display = "none";
-    // }
+    if (lastName.length < 2 || !regexName.test(lastName)) {
+        isFormValid = false;
+        errorLastName.innerHTML =
+            "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+        errorLastName.style.display = "block";
+    } else {
+        errorLastName.style.display = "none";
+    }
 
-    // if (!regexEmail.test(email)) {
-    //     errorEmail.innerHTML = "Veuillez entrer une adresse email valide.";
-    //     errorEmail.style.display = "block";
-    //     errorEmail.style.color = "red";
-    //     errorEmail.style.fontSize = "0.8rem";
-    //     errorEmail.style.marginBottom = "0. 5rem";
-    // }
-    // else {
-    //     errorEmail.style.display = "none";
-    // }
+    if (!regexEmail.test(email)) {
+        isFormValid = false;
+        errorEmail.innerHTML = "Veuillez entrer une adresse email valide.";
+        errorEmail.style.display = "block";
+    } else {
+        errorEmail.style.display = "none";
+    }
 
     // if (birthdate == "") {
     //     errorBirthdate.innerHTML = "Vous devez entrer votre date de naissance.";
@@ -138,8 +137,16 @@ modalBtnSumit.addEventListener("click", function (e) {
     //     error.style.marginBottom = "0.5rem";
     // }
 
-}
-);
+    if (isFormValid) {
+        console.log("form valid");
+        const form = document.getElementById("reserve");
+        console.log(form);
+        reserve.style.display = "none";
+        validate.style.display = "flex";
 
-
-
+        moddalBtnClose2.style.display = "flex";
+    } else {
+        console.log("form invalid");
+    }
+});
+// if form valid

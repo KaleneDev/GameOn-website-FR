@@ -65,6 +65,10 @@ img {
   border-radius: 15px;
 }
 
+.topnav a:hover.icon {
+  color: #ffffff;
+}
+
 .topnav a.active {
   background-color: #ff0000;
   color: #ffffff;
@@ -84,22 +88,22 @@ img {
     display: none;
   }
   .topnav a.icon {
-    float: right;
     display: block;
+    color: red;
+    font-size: 2rem;
   }
 }
 @media screen and (max-width: 768px) {
   .links-navbar {
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-  }
-  .topnav.responsive {
-    position: relative;
-  }
-  .topnav.responsive .icon {
     position: absolute;
-    right: 0;
-    top: 0;
+    top: calc(2vw + 10px);
+    right: 6rem;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
   }
   .topnav.responsive a {
     display: block;
@@ -187,6 +191,7 @@ main {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
+  max-height: 800px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -198,8 +203,14 @@ main {
 }
 
 .modal-body {
+  position: relative;
   padding: 15px 8%;
   margin: 15px auto;
+  min-height: 743px;
+}
+
+.content, .modal-body {
+  height: 100%;
 }
 
 label {
@@ -333,6 +344,7 @@ input[data-error]::after {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+  z-index: 1000;
 }
 
 .close:before,
@@ -364,6 +376,10 @@ input[data-error]::after {
   color: #fff;
   cursor: pointer;
   border: 0;
+}
+
+.btn-submit.close {
+  display: none;
 }
 
 /* custom select styles */
@@ -539,10 +555,45 @@ footer {
   width: 100%;
 }
 
+#validate {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.closeBtn {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 /* ERROR */
-#errorFirstName {
+#errorFirstName,
+#errorLastName,
+#errorEmail,
+#errorPassword,
+#errorConfirmPassword,
+#errorPhone,
+#errorAddress,
+#errorCity,
+#errorState,
+#errorZip,
+#errorCountry,
+#errorCardName,
+#errorCardNumber,
+#errorCardExpiration,
+#errorCardCVV,
+#errorCardZip,
+#errorCardCountry {
   color: red;
-  font-size: 1.5rem;
+  font-size: 0.8rem;
   font-weight: bold;
   text-align: center;
   margin-top: 1rem;
@@ -550,6 +601,9 @@ footer {
 }
 
 @media screen and (max-width: 800px) {
+  main {
+    padding: 0 6vw;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -570,12 +624,10 @@ footer {
   .hero-headline {
     font-size: 4.5rem;
     white-space: normal;
-    text-align: center;
   }
   .hero-text {
     width: unset;
     font-size: 1.5rem;
-    text-align: center;
   }
   .hero-img img {
     border-radius: 10px;
@@ -585,9 +637,13 @@ footer {
     display: block;
     margin: 32px auto 10px;
   }
+  footer {
+    justify-content: center;
+  }
   .copyrights {
     margin-top: 50px;
     text-align: center;
+    margin: 20px 0 30px;
   }
 }
 @media screen and (max-width: 1025px) {

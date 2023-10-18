@@ -58,6 +58,7 @@
           <span class="close"></span>
           <div class="modal-body">
             <form
+              id="reserve"
               name="reserve"
               action="index.html"
               method="get"
@@ -85,6 +86,7 @@
                   id="last"
                   name="last"
                 /><br>
+                <span id="errorLastName"></span>
               </div>
               <div
                 class="formData">
@@ -95,6 +97,7 @@
                   id="email"
                   name="email"
                 /><br>
+                <span id="errorEmail"></span>
               </div>
               <div
                 class="formData">
@@ -203,12 +206,15 @@
                 <br>
               </div>
               <input
-                class="btn-submit"
+                class="btn-submit button"
                 type="submit"
-                class="button"
                 value="C'est parti"
               />
             </form>
+            <div id="validate">
+                <span>Merci pour <br> votre inscription</span>
+            </div>
+            <input class="btn-submit closeBtn button" value="Fermer" type="button"/>
           </div>
         </div>
       </div>
