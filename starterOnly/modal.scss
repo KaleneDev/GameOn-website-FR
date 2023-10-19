@@ -200,7 +200,7 @@ main {
     margin: 5% auto;
     width: 100%;
     max-width: 500px;
-    max-height: 950px;
+    // max-height: 950px;
     animation-name: modalopen;
     animation-duration: var(--modal-duration);
     background: #232323;
@@ -218,7 +218,7 @@ main {
     min-height: 743px;
 }
 .content, .modal-body {
-    height: 100%;
+    // height: 100%;
 }
 label {
     font-family: var(--font-default);
