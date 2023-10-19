@@ -200,7 +200,7 @@ main {
     margin: 5% auto;
     width: 100%;
     max-width: 500px;
-    max-height: 800px;
+    max-height: 950px;
     animation-name: modalopen;
     animation-duration: var(--modal-duration);
     background: #232323;
@@ -551,24 +551,14 @@ footer {
 #errorFirstName,
 #errorLastName,
 #errorEmail,
-#errorPassword,
-#errorConfirmPassword,
-#errorPhone,
-#errorAddress,
-#errorCity,
-#errorState,
-#errorZip,
-#errorCountry,
-#errorCardName,
-#errorCardNumber,
-#errorCardExpiration,
-#errorCardCVV,
-#errorCardZip,
-#errorCardCountry {
+#errorBirthdate,
+#errorQuantity,
+#errorLocation1
+{
     color: red;
     font-size: 0.8rem;
     font-weight: bold;
-    text-align: center;
+    text-align: start;
     margin-top: 1rem;
     display: none;
 }

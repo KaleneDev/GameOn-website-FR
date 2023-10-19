@@ -1,5 +1,5 @@
 function editNav() {
-    var x = document.getElementById("myTopnav");
+    const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";
     } else {
@@ -37,8 +37,9 @@ modalBtnSumit.addEventListener("click", function (e) {
     let firstName = document.getElementById("first").value;
     let lastName = document.getElementById("last").value;
     let email = document.getElementById("email").value;
-    // let birthdate = document.getElementById("birthdate").value;
-    // let quantity = document.getElementById("quantity").value;
+    let birthdate = document.getElementById("birthdate").value;
+    let quantity = document.getElementById("quantity").value;
+    let location1 = document.getElementById("location1").checked;
     // let location = document.querySelector('input[name="location"]:checked').value;
     // let checkbox1 = document.getElementById("checkbox1").checked;
 
@@ -81,38 +82,31 @@ modalBtnSumit.addEventListener("click", function (e) {
         errorEmail.style.display = "none";
     }
 
-    // if (birthdate == "") {
-    //     errorBirthdate.innerHTML = "Vous devez entrer votre date de naissance.";
-    //     errorBirthdate.style.display = "block";
-    //     errorBirthdate.style.color = "red";
-    //     errorBirthdate.style.fontSize = "0.8rem";
-    //     errorBirthdate.style.marginBottom = "0.5rem";
-    // }
-    // else {
-    //     errorBirthdate.style.display = "none";
-    // }
+    if (birthdate == "") {
+        isFormValid = false;
+        errorBirthdate.innerHTML = "Vous devez entrer votre date de naissance.";
+        errorBirthdate.style.display = "block";
+    }
+    else {
+        errorBirthdate.style.display = "none";
+    }
 
-    // if (quantity == "") {
-    //     errorQuantity.innerHTML = "Vous devez entrer un nombre.";
-    //     errorQuantity.style.display = "block";
-    //     errorQuantity.style.color = "red";
-    //     errorQuantity.style.fontSize = "0.8rem";
-    //     errorQuantity.style.marginBottom = "0.5rem";
-    // }
-    // else {
-    //     errorQuantity.style.display = "none";
-    // }
+    if (quantity == "") {
+        errorQuantity.innerHTML = "Vous devez entrer un nombre.";
+        errorQuantity.style.display = "block";
+    }
+    else {
+        errorQuantity.style.display = "none";
+    }
 
-    // if (location == "") {
-    //     errorLocation.innerHTML = "Vous devez choisir une ville.";
-    //     errorLocation.style.display = "block";
-    //     errorLocation.style.color = "red";
-    //     errorLocation.style.fontSize = "0.8rem";
-    //     errorLocation.style.marginBottom = "0.5rem";
-    // }
-    // else {
-    //     errorLocation.style.display = "none";
-    // }
+    if (location1 == "") {
+        errorLocation1.innerHTML = "Vous devez choisir une ville.";
+        errorLocation1.style.display = "block";
+   
+    }
+    else {
+        errorLocation.style.display = "none";
+    }
 
     // if (!checkbox1) {
     //     errorCheckbox1.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
