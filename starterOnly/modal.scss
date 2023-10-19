@@ -215,7 +215,8 @@ main {
     position: relative;
     padding: 15px 8%;
     margin: 15px auto;
-    min-height: 743px;
+    min-height: 250px;
+    height: 70vh;
 }
 .content, .modal-body {
     // height: 100%;
@@ -553,7 +554,8 @@ footer {
 #errorEmail,
 #errorBirthdate,
 #errorQuantity,
-#errorLocation1
+#errorLocation1,
+#errorCheckbox1
 {
     color: red;
     font-size: 0.8rem;
