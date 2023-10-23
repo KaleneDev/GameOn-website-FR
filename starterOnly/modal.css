@@ -39,7 +39,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 6vw;
 }
 
 .header-logo {
@@ -62,10 +62,10 @@ img {
 .topnav a:hover {
   background-color: #ff0000;
   color: #ffffff;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
-.topnav a:hover.icon {
+.topnav a:over.icon {
   color: #ffffff;
 }
 
@@ -73,6 +73,7 @@ img {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 8px;
+  text-decoration: underline;
 }
 
 .topnav .icon {
@@ -81,9 +82,14 @@ img {
 
 .main-navbar {
   display: flex;
+  align-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
+  img {
+    height: 25px;
+    padding: 0 10px;
+  }
   .topnav a {
     display: none;
   }
@@ -92,8 +98,13 @@ img {
     color: red;
     font-size: 2rem;
   }
+  .topnav a.icon:hover {
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 15px;
+  }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
   .links-navbar {
     z-index: 1000;
     display: flex;
@@ -118,11 +129,9 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
   }
 }
 main {
-  font-size: 130%;
   font-weight: bolder;
   color: black;
   padding-top: 0.5vw;
@@ -199,14 +208,14 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+  top: 70px;
 }
 
 .modal-body {
-  position: relative;
   padding: 15px 8%;
   margin: 15px auto;
   min-height: 250px;
-  height: 70vh;
+  max-height: 90vh;
 }
 
 label {
@@ -489,7 +498,7 @@ input[data-error]::after {
 }
 
 .hero-headline {
-  font-size: 96px;
+  font-size: 6rem;
   font-weight: normal;
   white-space: nowrap;
 }
@@ -497,7 +506,7 @@ input[data-error]::after {
 .hero-text {
   width: 146%;
   font-weight: normal;
-  margin-top: 57px;
+  margin-top: 20px;
   padding: 0;
   font-size: 24px;
   font-weight: 400;
@@ -531,7 +540,7 @@ input[data-error]::after {
 .copyrights {
   color: #fe142f;
   padding: 0;
-  font-size: 1rem;
+  font-size: 10px;
   margin: 60px 0 30px;
   font-weight: bolder;
 }
@@ -556,7 +565,7 @@ footer {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  height: 60vh;
   text-align: center;
   font-weight: 400;
   font-size: 36px;
@@ -586,6 +595,20 @@ footer {
   display: none;
 }
 
+@media screen and (max-width: 1025px) {
+  .hero-headline {
+    font-size: 9vw;
+  }
+  .hero-text {
+    font-size: 1.2rem;
+  }
+  .hero-img img {
+    margin-top: 20px;
+  }
+  .hero-section > .btn-signup {
+    margin-top: 20px;
+  }
+}
 @media screen and (max-width: 800px) {
   main {
     padding: 0 6vw;
@@ -604,24 +627,26 @@ footer {
   .hero-content::after {
     content: unset;
   }
-  .hero-content .btn-signup {
-    display: none;
-  }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 40px;
     white-space: normal;
   }
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    font-size: 13px;
   }
   .hero-img img {
     border-radius: 10px;
     margin-top: 40px;
   }
   .hero-section > .btn-signup {
-    display: block;
+    display: flex;
     margin: 32px auto 10px;
+    font-size: 14px;
+    height: 31px;
+    width: 141px;
+    align-items: center;
+    justify-content: center;
   }
   footer {
     justify-content: center;
@@ -631,19 +656,8 @@ footer {
     text-align: center;
     margin: 20px 0 30px;
   }
-}
-@media screen and (max-width: 1025px) {
-  .hero-headline {
-    font-size: 9vw;
-  }
-  .hero-text {
-    font-size: 1.2rem;
-  }
-  .hero-img img {
-    margin-top: 20px;
-  }
-  .hero-section > .btn-signup {
-    margin-top: 20px;
+  .btn-signup {
+    display: none;
   }
 }
 @keyframes modalopen {
