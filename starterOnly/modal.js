@@ -13,7 +13,7 @@ const modalBtnClose = document.querySelector(".close");
 const moddalBtnClose2 = document.querySelector(".btn-submit.closeBtn");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalBtnSumit = document.querySelector(".btn-submit");
+const modalBtnSubmit = document.querySelector(".btn-submit");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -28,89 +28,117 @@ function closeModal() {
     modalbg.style.display = "none";
 }
 
-modalBtnSumit.addEventListener("click", function (e) {
+modalBtnSubmit.addEventListener("click", function (e) {
     e.preventDefault();
     let isFormValid = true;
 
-    let firstName = document.getElementById("first").value;
-    let lastName = document.getElementById("last").value;
-    let email = document.getElementById("email").value;
-    let birthdate = document.getElementById("birthdate").value;
-    let quantity = document.getElementById("quantity").value;
-    let location1 = document.getElementById("location1").checked;
-    let location2 = document.getElementById("location2").checked;
-    let location3 = document.getElementById("location3").checked;
-    let location4 = document.getElementById("location4").checked;
-    let location5 = document.getElementById("location5").checked;
-    let location6 = document.getElementById("location6").checked;
-    let checkbox1 = document.getElementById("checkbox1").checked;
+    let firstName = document.getElementById("first");
+    let lastName = document.getElementById("last");
+    let email = document.getElementById("email");
+    let birthdate = document.getElementById("birthdate");
+    let quantity = document.getElementById("quantity");
+    let checkbox1 = document.getElementById("checkbox1");
+    let locations = document.querySelectorAll("[name='location']");
 
     let regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-    if (firstName.length < 2) {
-        isFormValid = false;
-        errorFirstName.innerHTML =
-            "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-        errorFirstName.style.display = "block";
-    } else {
-        errorFirstName.style.display = "none";
-    }
-
-    if (lastName.length < 2) {
-        isFormValid = false;
-        errorLastName.innerHTML =
-            "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-        errorLastName.style.display = "block";
-    } else {
-        errorLastName.style.display = "none";
-    }
-
-    if (!regexEmail.test(email)) {
-        isFormValid = false;
-        errorEmail.innerHTML = "Veuillez entrer une adresse email valide.";
-        errorEmail.style.display = "block";
-    } else {
-        errorEmail.style.display = "none";
-    }
-
-    if (birthdate == "") {
-        isFormValid = false;
-        errorBirthdate.innerHTML = "Vous devez entrer votre date de naissance.";
-        errorBirthdate.style.display = "block";
-    } else {
-        errorBirthdate.style.display = "none";
-    }
-
-    if (quantity == "") {
-        isFormValid = false;
-        errorQuantity.innerHTML = "Vous devez entrer un nombre.";
-        errorQuantity.style.display = "block";
-    } else {
-        errorQuantity.style.display = "none";
-    }
-
-    if (
-        location1 === false &&
-        location2 === false &&
-        location3 === false &&
-        location4 === false &&
-        location5 === false &&
-        location6 === false
+    function validateField(
+        input,
+        condition,
+        errorMessageElement,
+        fieldValue,
+        errorMessage
     ) {
-        isFormValid = false;
-        errorLocation1.innerHTML = "Vous devez choisir une ville.";
-        errorLocation1.style.display = "block";
-    } else {
-        errorLocation1.style.display = "none";
+        if (!condition(fieldValue)) {
+            isFormValid = false;
+            // if newspan doesnt exist
+            if (!document.getElementById(errorMessageElement)) {
+                // create new span
+                let newSpan = document.createElement("span");
+                newSpan.id = errorMessageElement;
+                // ajouter une classe
+                newSpan.classList.add("error");
+                newSpan.innerHTML = errorMessage;
+                input.parentNode.appendChild(newSpan);
+            }
+        } else {
+            //    display none span
+            if (document.getElementById(errorMessageElement)) {
+                document.getElementById(errorMessageElement).style.display =
+                    "none";
+            }
+        }
     }
 
-    if (checkbox1 === false) {
-        isFormValid = false;
-        errorCheckbox1.innerHTML =
-            "Vous devez vérifier que vous acceptez les termes et conditions.";
-        errorCheckbox1.style.display = "block";
+    validateField(
+        firstName,
+        (value) => value.length >= 2,
+        "errorFirstName",
+        firstName.value,
+        "Veuillez entrer 2 caractères ou plus pour le champ du prénom."
+    );
+
+    validateField(
+        lastName,
+        (value) => value.length >= 2,
+        "errorLastName",
+        lastName.value,
+        "Veuillez entrer 2 caractères ou plus pour le champ du nom."
+    );
+
+    validateField(
+        email,
+        (value) => regexEmail.test(value),
+        "errorEmail",
+        email.value,
+        "Veuillez entrer une adresse email valide."
+    );
+
+    validateField(
+        birthdate,
+        (value) => value !== "",
+        "errorBirthdate",
+        birthdate.value,
+        "Vous devez entrer votre date de naissance."
+    );
+
+    validateField(
+        quantity,
+        (value) => value !== "",
+        "errorQuantity",
+        quantity.value,
+        "Vous devez entrer un nombre."
+    );
+
+    validateField(
+        checkbox1,
+        (value) => value !== false,
+        "errorCheckbox1",
+        checkbox1.checked,
+        "Vous devez vérifier que vous acceptez les termes et conditions."
+    );
+    let isLocationChecked = false;
+
+    locations.forEach((location) => {
+        if (location.checked) {
+            isLocationChecked = true;
+        }
+    });
+    // Si aucun élément n'est coché, affichez un message d'erreur
+    if (!isLocationChecked) {
+        validateField(
+            locations[0], // Vous pouvez utiliser le premier élément juste pour avoir un point de référence pour l'insertion du span.
+            () => false, // Force la condition à être fausse pour afficher le message d'erreur
+            "errorLocation",
+            false,
+            "Vous devez choisir une ville."
+        );
     } else {
-        errorCheckbox1.style.display = "none";
+        // Si un message d'erreur existe déjà, cachez-le
+        let existingError = document.getElementById("errorLocation");
+        if (existingError) {
+            existingError.style.display = "none";
+        }
     }
 
     if (isFormValid) {

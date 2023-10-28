@@ -544,19 +544,13 @@ footer {
     transform: translateX(-50%);
 }
 /* ERROR */
-#errorFirstName,
-#errorLastName,
-#errorEmail,
-#errorBirthdate,
-#errorQuantity,
-#errorLocation1,
-#errorCheckbox1 {
+.error {
     color: red;
     font-size: 0.8rem;
     font-weight: bold;
     text-align: start;
     margin-top: 1rem;
-    display: none;
+    // display: none;
 }
 @media screen and (max-width: 1025px) {
     .hero-headline {
